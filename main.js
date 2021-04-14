@@ -68,10 +68,12 @@ function initCreate() {
         
         var title = result[i].title;
         var dname = result[i].name;
-        console.log(dname);
         var link = result[i].rawurl;
+        link = link.substring(8);
+        var splitURL = link.split('/');
+        var shortURL = splitURL[0];
 
-        fetch("http://127.0.0.1:5000/api/create-pages?title=" + title + "&name=" + dname + "&link=" + link)
+        fetch("http://127.0.0.1:5000/api/create-pages?title=" + title + "&name=" + dname + "&link=" + link + "&shortURL=" + shortURL)
         .then(function (response) {
             return response.json();
         })
@@ -85,3 +87,22 @@ function initCreate() {
     
     });
 }
+
+function writeCreatedby() {
+    $.ajax({
+        url: "assets/web-app-list.json",
+        dataType: "json",
+    }).done(function (result) {
+        console.log(result);
+        var selected = result.filter(function (item) {
+            return item.id == 1;
+    });
+    console.log(result[4].rawurl);
+    var longURL = result[4].rawurl;
+    longURL = longURL.substring(8);
+    var splitURL = longURL.split('/');
+    var shortURL = splitURL[0];
+    console.log(shortURL);
+
+    });
+    }

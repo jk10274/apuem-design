@@ -1,3 +1,6 @@
 .list-group a {
     text-decoration: none !important;
 }
+body {
+    height: 100%;
+}
